@@ -1,16 +1,18 @@
-  Dado("que eu tenho uma conta com {int} reais") do |int|
-    pending # Write code here that turns the phrase above into concrete actions
+require_relative '../../src/conta.rb'
+
+  Dado("que eu tenho uma conta com {int} reais") do |saldo|
+    @account = Account.new(saldo)
   end
 
-  Quando("faço um saque no valor de {int} reais") do |int|
-    pending # Write code here that turns the phrase above into concrete actions
+  Quando("faço um saque no valor de {int} reais") do |valorSaque|
+    @account.toWithdraw(valorSaque)
   end
 
-  Então("{int} reais será meu saldo final") do |int|
-    pending # Write code here that turns the phrase above into concrete actions
+  Então("{int} reais será meu saldo final") do |saldoFinal|
+    @account.getBalance() == saldoFinal
   end
 
-  Então("devo ver a mensagem {string}") do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+  Então("devo ver a mensagem {string}") do |mensagem|
+    expect(@account.getMessage()).to eql mensagem
   end
   
